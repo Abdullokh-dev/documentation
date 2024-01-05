@@ -1,7 +1,7 @@
-function Type2() {
+function Migration() {
   return (
     <>
-      <h1> Type 2 </h1>
+      <h1> Migration </h1>
 
       <form>
         <div className="mb-3">
@@ -15,4 +15,4 @@ function Type2() {
   )
 }
 
-export default Type2
+export default Migration

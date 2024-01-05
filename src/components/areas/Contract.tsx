@@ -6,15 +6,16 @@ interface Contract {
   additionalName: string,
   from: string,
   to: string,
-  price: string
+  price: string,
+  address: string,
 }
 
 interface Props {
   onSubmit: (data: Contract) => void;
 }
 
-function Contract88({onSubmit}: Props): JSX.Element {
-  const [contract, setContract] = useState<Contract>({surname: '', name: '', additionalName: '', from: '', to: '', price: ''});
+function Contract({onSubmit}: Props): JSX.Element {
+  const [contract, setContract] = useState<Contract>({surname: '', name: '', additionalName: '', from: '', to: '', price: '', address: ''});
 
   const submitContract = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,8 +24,6 @@ function Contract88({onSubmit}: Props): JSX.Element {
 
   return (
     <>
-      <h1> Contract 88 </h1>
-
       <form onSubmit={submitContract}>
         <div className="col-12">
           <div className="mb-3">
@@ -62,6 +61,16 @@ function Contract88({onSubmit}: Props): JSX.Element {
             </select>
           </div>
 
+          <div className="my-3">
+            <label className="form-label">Address</label>
+            <select value={contract.address} onChange={e => setContract({...contract, address: e.target.value})} className="form-select" required>
+              <option value="">Select Address</option>
+              <option value="Contract88">Свердлово 88</option>
+              <option value="Contract57A">Октября 57А</option>
+              <option value="ContractKarla">Карла 49/11</option>
+            </select>
+          </div>
+
           <div className="mt-3">
             <button className="btn btn-primary w-100 mt-3 mb-5">print</button>
           </div>
@@ -71,4 +80,4 @@ function Contract88({onSubmit}: Props): JSX.Element {
   )
 }
 
-export default Contract88
+export default Contract

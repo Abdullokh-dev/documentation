@@ -7,7 +7,6 @@ interface Props {
 function ExpenseFilter({onSelectType}: Props) {
   return(
     <select className="form-select my-5" onChange={(event) => onSelectType(event.target.value)}>
-      <option>Change Type</option>
       {areaTypes.map((type) => <option value={type} key={type}>{type}</option>)}
     </select>
   )

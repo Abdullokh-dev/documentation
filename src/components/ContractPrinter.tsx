@@ -8,10 +8,10 @@ function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 }
 
-function ContractPrinter(contract, contractType: 'Contract88' | 'Contract57' | 'ContractKarla') {
+function ContractPrinter(contract) {
   if(contract.surname && contract.name && contract.additionalName && contract.from && contract.to && contract.price) {
-    const fileType = `/${contractType}.docx`;
-    const fileName = 'Contract 88 ' + contract.surname + ' ' + contract.name + ' ' + contract.additionalName
+    const fileType = `/${contract.address}.docx`;
+    const fileName = contract.address + contract.surname + ' ' + contract.name + ' ' + contract.additionalName
 
     loadFile(fileType, function (error, content) {
         if (error) {
