@@ -1,10 +1,16 @@
-import {Link} from "react-router-dom";
+import {useState} from "react";
+import AreaFilter from "../components/AreaFilter";
+import PrinterArea from "../components/PrinterArea";
 
 function Home() {
+  const [typeArea, setTypeArea] = useState('');
+
   return (
-    <>
-      <Link to={'/users'}> GO TO USERS </Link>
-    </>
+    <div className={'container'}>
+      <AreaFilter onSelectType={(type) => setTypeArea(type)} />
+
+      <PrinterArea type={typeArea} />
+    </div>
   )
 }
 

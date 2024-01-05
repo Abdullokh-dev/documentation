@@ -1,26 +1,25 @@
-import axios from "axios";
-import User from "../models/user";
+import axios from 'axios';
+import User from '../models/user';
+const baseUrl = 'https://jsonplaceholder.typicode.com';
 
 class UserService {
-  http = axios.create({baseURL: 'https://jsonplaceholder.typicode.com/'});
-
   async getUsers() {
-    const response = await this.http.get<User[]>('/users');
+    const response = await axios.get<User[]>(baseUrl + '/users/')
 
     return response.data;
   }
 
   async addUser(name: string) {
-    const response = await this.http.post<User>('/users', {name: name});
+    const response = await axios.post<User>(baseUrl + '/users', {name: name});
 
     return response.data;
   }
 
   async removeUser(id: number) {
-    const response = await this.http.delete('/users/' + id);
+    const response = await axios.delete(baseUrl + '/users/' + id);
 
     return response.data;
   }
 }
 
-export default new UserService;
+export default new UserService
