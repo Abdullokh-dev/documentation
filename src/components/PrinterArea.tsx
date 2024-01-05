@@ -1,17 +1,18 @@
+import React from "react";
 import Type2 from "./areas/Type2";
-import Type1 from "./areas/Type1";
+import Contract88 from "./areas/Contract88";
 import Type3 from "./areas/Type3";
 import TypeDefault from "./areas/TypeDefault";
 import areaTypes from "../models/areaTypes";
-import React from "react";
+import Print from "./ContractPrinter";
 
 interface Props {
   type: typeof areaTypes[number];
 }
 
 const printerAreaComponents: Record<typeof areaTypes[number], React.FC> = {
-  'Type 1': <Type2 />,
-  'Type 2': <Type1 />,
+  'Contract 88': <Contract88 onSubmit={contract => Print(contract, 'Contract88')} />,
+  'Type 2': <Type2 />,
   'Type 3': <Type3 />,
 }
 
