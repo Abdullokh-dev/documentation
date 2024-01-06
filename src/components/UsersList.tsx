@@ -1,5 +1,6 @@
 import User from "../models/user";
 import {useState} from "react";
+import {MigrationPrinter} from "./ContractPrinter";
 
 interface UsersListProps {
   users: User[];
@@ -44,7 +45,7 @@ function UsersList({ users, onRemoveUser }: UsersListProps) {
                 <td> {user.name} </td>
                 <td> {user.username} </td>
                 <td> {user.phone} </td>
-                <td> <button>edit</button> <button onClick={() => onRemoveUser(user.id)}>del</button> </td>
+                <td> <button>edit</button> <button onClick={() => onRemoveUser(user.id)}>del</button> <button onClick={() => MigrationPrinter(user)}>print</button> </td>
               </tr>
             )
           }
