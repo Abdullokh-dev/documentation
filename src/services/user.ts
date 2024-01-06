@@ -1,25 +1,30 @@
-import axios from 'axios';
-import User from '../models/user';
-const baseUrl = 'https://jsonplaceholder.typicode.com';
+import supabase from "../config/supabase-client";
 
 class UserService {
   async getUsers() {
-    const response = await axios.get<User[]>(baseUrl + '/users/')
+    try {
+      const {data, error} = await supabase.from('User').select()
 
-    return response.data;
+      if (error) {console.warn(error.message)}
+
+      if (data) {return data}
+
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
-  async addUser(name: string) {
-    const response = await axios.post<User>(baseUrl + '/users', {name: name});
-
-    return response.data;
-  }
-
-  async removeUser(id: number) {
-    const response = await axios.delete(baseUrl + '/users/' + id);
-
-    return response.data;
-  }
+  // async addUser(name: string) {
+  //   const response = await axios.post<User>(baseUrl + '/users', {name: name});
+  //
+  //   return response.data;
+  // }
+  //
+  // async removeUser(id: number) {
+  //   const response = await axios.delete(baseUrl + '/users/' + id);
+  //
+  //   return response.data;
+  // }
 }
 
 export default new UserService

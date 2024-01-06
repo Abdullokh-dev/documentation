@@ -1,10 +1,11 @@
 export  default interface User {
   id: number,
   name: string,
-  username: string,
-  email: string,
-  address: object,
-  phone: string,
-  website: string,
-  company: object
+  surname: string,
+  additionalName: string,
+  birthday: string,
+  gender: string,
+  placeOfStay: string,
+  citizenship: string,
+  city: string
 }
