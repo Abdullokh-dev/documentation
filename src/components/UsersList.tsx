@@ -1,5 +1,5 @@
 import User from "../models/user";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 
 interface UsersListProps {
   users: User[];
@@ -14,19 +14,11 @@ const initial = {
 }
 
 function UsersList({ users, onRemoveUser }: UsersListProps) {
-  const [filters, setFilters] = useState(initial);
+  const [filters, setFilters] = useState(() => JSON.parse(localStorage.getItem('filters') as string) ?? initial);
 
   const save = () => {
     localStorage.setItem('filters', JSON.stringify(filters))
   }
-
-  useEffect(() => {
-    const memory = localStorage.getItem('filters')
-
-    if(!memory) save();
-
-    setFilters(JSON.parse(localStorage.getItem('filters') as string))
-  }, []);
 
   return(
     <>
