@@ -2,7 +2,7 @@ import Docxtemplater from 'docxtemplater';
 import PizZip from 'pizzip';
 import PizZipUtils from 'pizzip/utils/index.js';
 import { saveAs } from 'file-saver';
-import dateFormat from "../assets/date-format";
+import dateFormat from "../assets/ts/date-format";
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);

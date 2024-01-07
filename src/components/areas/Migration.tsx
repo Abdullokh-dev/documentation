@@ -9,7 +9,7 @@ function Migration() {
           <input type="text" className="form-control" id="userName" aria-label={'User Name'} />
         </div>
 
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-bd-primary">Submit</button>
       </form>
     </>
   )

@@ -2,6 +2,7 @@ import UsersList from "../components/UsersList";
 import User from "../models/user";
 import {useEffect, useState} from "react";
 import userService from "../services/user"
+import {Header} from "../components/Header";
 
 function Users() {
   const [users, setUsers] = useState<User[]>([]);
@@ -22,7 +23,10 @@ function Users() {
 
   return (
     <>
-      <UsersList users={users} onRemoveUser={removeUser} />
+      <Header />
+      <main className="main-content">
+        <UsersList users={users} onRemoveUser={removeUser} />
+      </main>
     </>
   )
 }

@@ -6,6 +6,21 @@ export  default interface User {
   birthday: string,
   gender: string,
   placeOfStay: string,
-  citizenship: string,
-  city: string
+  citizenship_country: string,
+  city: string,
+  docType: string,
+  docSeriesNum: string,
+  docDateOfIssue: string,
+  docDateOfExpiry: string,
+  rightToStay: string,
+  ruDocSeries: string,
+  ruDocNum: string,
+  ruDocDateOfIssue: string,
+  ruDocDateOfExpiry: string,
+  migCardSeries: string,
+  migCardNum: string,
+  purposeOfComing: string,
+  profession: string,
+  dateOfEntryToRu: string,
+  deadlineLiveInRu: string
 }

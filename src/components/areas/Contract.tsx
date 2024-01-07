@@ -24,7 +24,7 @@ function Contract({onSubmit}: Props): JSX.Element {
 
   return (
     <>
-      <form onSubmit={submitContract}>
+      <form className={'col-12 col-md-8 col-lg-6 col-xl-5 mx-auto'} onSubmit={submitContract}>
         <div className="col-12">
           <div className="mb-3">
             <label className="form-label" htmlFor="surname">Surname</label>
@@ -72,7 +72,7 @@ function Contract({onSubmit}: Props): JSX.Element {
           </div>
 
           <div className="mt-3">
-            <button className="btn btn-primary w-100 mt-3 mb-5">print</button>
+            <button className="btn btn-bd-primary w-100 fs-5 mt-3 mb-5">Print</button>
           </div>
         </div>
       </form>
