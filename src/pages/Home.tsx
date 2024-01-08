@@ -1,6 +1,6 @@
 import {useState} from "react";
-import AreaFilter from "../components/AreaFilter";
-import PrinterArea from "../components/PrinterArea";
+import AreaFilter from "../components/area/AreaFilter";
+import DocProduceAreaController from "../components/DocProduceAreaController";
 import {Header} from "../components/Header";
 
 function Home() {
@@ -13,7 +13,7 @@ function Home() {
         <div className={'container'}>
           <AreaFilter onSelectType={(type) => setTypeArea(type)} />
 
-          <PrinterArea type={typeArea as string} />
+          <DocProduceAreaController type={typeArea as string} />
         </div>
       </main>
     </>

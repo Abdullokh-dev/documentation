@@ -1,8 +1,8 @@
 import { FC } from "react";
-import Migration from "./areas/Migration";
-import Contract from "./areas/Contract";
+import Migration from "./area/areas/Migration";
+import Contract from "./area/areas/Contract";
 import areaTypes from "../models/areaTypes";
-import Print from "./ContractPrinter";
+import Print from "./DocCreateAction";
 
 interface Props {
   type: typeof areaTypes[number];
@@ -13,7 +13,7 @@ const printerAreaComponents: Record<typeof areaTypes[number], FC> = {
   'Migration': () => <Migration />,
 }
 
-function PrinterArea({ type }: Props) {
+function DocProduceAreaController({ type }: Props) {
   const Component = printerAreaComponents[type];
 
   if (Component) {
@@ -24,4 +24,4 @@ function PrinterArea({ type }: Props) {
   return <Contract onSubmit={contract => Print(contract)} />;
 }
 
-export default PrinterArea;
+export default DocProduceAreaController;

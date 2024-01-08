@@ -1,11 +1,11 @@
 import UsersList from "../components/UsersList";
-import User from "../models/user";
+import UserModel from "../models/user";
 import {useEffect, useState} from "react";
 import userService from "../services/user"
 import {Header} from "../components/Header";
 
 function Users() {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<UserModel[]>([]);
 
   useEffect(() => {
     loadUsers()

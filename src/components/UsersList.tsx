@@ -1,9 +1,9 @@
-import User from "../models/user";
+import UserModel from "../models/user";
 import {useState} from "react";
-import {MigrationPrinter} from "./ContractPrinter";
+import {MigrationPrinter} from "./DocCreateAction";
 
 interface UsersListProps {
-  users: User[];
+  users: UserModel[];
   onRemoveUser: (id: number) => void;
 }
 

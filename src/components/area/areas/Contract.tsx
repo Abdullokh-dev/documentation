@@ -1,5 +1,5 @@
 import {useState} from "react";
-import ContractModel from "../../models/contract";
+import ContractModel from "../../../models/contract";
 
 interface Props {
   onSubmit: (data: ContractModel) => void;

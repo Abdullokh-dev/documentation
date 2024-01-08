@@ -1,4 +1,4 @@
-import areaTypes from "../models/areaTypes";
+import areaTypes from "../../models/areaTypes";
 
 interface Props {
   onSelectType: (category: string) => void;

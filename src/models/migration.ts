@@ -1,3 +1,5 @@
 export default interface MigrationModel {
-  name: string,
+  surname: string,
+  name: string
+  additionalName: string
 }
