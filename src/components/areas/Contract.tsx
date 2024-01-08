@@ -1,21 +1,12 @@
 import {useState} from "react";
-
-interface Contract {
-  surname: string,
-  name: string,
-  additionalName: string,
-  from: string,
-  to: string,
-  price: string,
-  address: string,
-}
+import ContractModel from "../../models/contract";
 
 interface Props {
-  onSubmit: (data: Contract) => void;
+  onSubmit: (data: ContractModel) => void;
 }
 
 function Contract({onSubmit}: Props): JSX.Element {
-  const [contract, setContract] = useState<Contract>({surname: '', name: '', additionalName: '', from: '', to: '', price: '', address: ''});
+  const [contract, setContract] = useState<ContractModel>({surname: '', name: '', additionalName: '', from: '', to: '', price: '', address: ''});
 
   const submitContract = (e: React.FormEvent) => {
     e.preventDefault();

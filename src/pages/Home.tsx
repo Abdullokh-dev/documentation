@@ -13,7 +13,7 @@ function Home() {
         <div className={'container'}>
           <AreaFilter onSelectType={(type) => setTypeArea(type)} />
 
-          <PrinterArea type={typeArea} />
+          <PrinterArea type={typeArea as string} />
         </div>
       </main>
     </>

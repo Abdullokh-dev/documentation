@@ -1,4 +1,4 @@
-function Migration() {
+export default function Migration() {
   return (
     <>
       <h1> Migration </h1>
@@ -14,5 +14,3 @@ function Migration() {
     </>
   )
 }
-
-export default Migration

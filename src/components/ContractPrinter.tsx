@@ -2,13 +2,19 @@ import Docxtemplater from 'docxtemplater';
 import PizZip from 'pizzip';
 import PizZipUtils from 'pizzip/utils/index.js';
 import { saveAs } from 'file-saver';
-import dateFormat from "../assets/ts/date-format";
+import dateFormat from '../assets/ts/date-format';
+import ContractModel from "../models/contract";
+import MigrationModel from "../models/migration";
 
-function loadFile(url, callback) {
+interface Part {
+  module: string
+}
+
+function loadFile(url: string, callback: (error: Error, content: string) => void) {
   PizZipUtils.getBinaryContent(url, callback);
 }
 
-function ContractPrinter(contract) {
+function ContractPrinter(contract: ContractModel) {
   if(contract.surname && contract.name && contract.additionalName && contract.from && contract.to && contract.price) {
     const fileType = `/${contract.address}.docx`;
     const fileName = contract.address + contract.surname + ' ' + contract.name + ' ' + contract.additionalName
@@ -46,7 +52,7 @@ function ContractPrinter(contract) {
   }
 }
 
-export function MigrationPrinter(migration) {
+export function MigrationPrinter(migration: MigrationModel) {
   if(migration.name) {
     // let showWay;
     // switch (showWay) {
@@ -67,7 +73,7 @@ export function MigrationPrinter(migration) {
         if (error) {alert('File did not found!');throw error;}
 
         const zip = new PizZip(content);
-        function nullGetter(part, scopeManager) {
+        function nullGetter(part: Part) {
           if (!part.module) {
             return "";
           }

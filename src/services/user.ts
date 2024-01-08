@@ -9,8 +9,8 @@ class UserService {
 
       if (data) {return data}
 
-    } catch (error) {
-      alert(error.message);
+    } catch (error: Error | unknown) {
+      alert(error);
     }
   }
 

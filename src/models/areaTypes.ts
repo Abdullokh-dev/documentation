@@ -1,3 +1,3 @@
-const areaTypes = ["Contract", "Migration"] as const;
+const areaTypes = ["Contract", "Migration"];
 
 export default areaTypes;

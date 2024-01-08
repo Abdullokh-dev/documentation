@@ -133,7 +133,7 @@ function UsersList({ users, onRemoveUser }: UsersListProps) {
       </table>
 
       <section className='Filters'>
-        <div className="offcanvas offcanvas-end" data-bs-scroll="true" tabIndex="-1" id="filters" aria-labelledby="filters">
+        <div className="offcanvas offcanvas-end" data-bs-scroll="true" tabIndex={-1} id="filters" aria-labelledby="filters">
           <div className="offcanvas-header">
             <h5 className="offcanvas-title" id="offcanvasExampleLabel">Edit Columns</h5>
             <button type="button" className="close-btn p-0 d-flex" data-bs-dismiss="offcanvas" aria-label="Close">
