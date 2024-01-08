@@ -9,7 +9,7 @@ class UserService {
 
       if (data) {return data}
 
-    } catch (error: Error | unknown) {
+    } catch (error: unknown) {
       alert(error);
     }
   }
