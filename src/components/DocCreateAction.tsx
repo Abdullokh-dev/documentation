@@ -4,7 +4,7 @@ import PizZipUtils from 'pizzip/utils/index.js';
 import { saveAs } from 'file-saver';
 import dateFormat from '../assets/ts/date-format';
 import ContractModel from '../models/contract';
-import MigrationModel from '../models/migration';
+import UserModel from "../models/user";
 
 interface Part {
   module: string
@@ -48,11 +48,10 @@ function DocCreateAction(contract: ContractModel) {
   }
 }
 
-export function MigrationPrinter(migration: MigrationModel) {
+export function MigrationPrinter(migration: UserModel) {
   if(migration.surname && migration.name && migration.additionalName && migration.citizenship_country
       && migration.birthday && migration.gender && migration.city && migration.docType && migration.docSeriesNum
-      && migration.docDateOfIssue && migration.docDateOfExpiry && migration.rightToStay && migration.ruDocSeries
-      && migration.ruDocNum && migration.ruDocDateOfIssue && migration.ruDocDateOfExpiry && migration.purposeOfComing
+      && migration.docDateOfIssue && migration.docDateOfExpiry && migration.rightToStay && migration.purposeOfComing
       && migration.migCardSeries && migration.migCardNum)
   {
     // let showWay;
@@ -99,6 +98,7 @@ export function MigrationPrinter(migration: MigrationModel) {
       const docType = mapToUpperCase(migration.docType);
       const docSeriesNum = mapToUpperCase(migration.docSeriesNum);
       const ruDocSeries = mapToUpperCase(migration.ruDocSeries);
+      const profession = mapToUpperCase(migration.profession);
 
       // Gender
       let male: string = "";
@@ -133,31 +133,31 @@ export function MigrationPrinter(migration: MigrationModel) {
       }
 
       switch (migration.purposeOfComing) {
-        case 'служебная':
+        case 'Служебная':
           official = 'V'
           break;
-        case 'туризм':
+        case 'Туризм':
           tourism = 'V'
           break;
-        case 'деловая':
+        case 'Деловая':
           business = 'V'
           break;
-        case 'учеба':
+        case 'Учеба':
           studies = 'V'
           break;
-        case 'работа':
+        case 'Работа':
           job = 'V'
           break;
-        case 'частная':
+        case 'Частная':
           own = 'V'
           break;
-        case 'транзит':
+        case 'Транзит':
           transit = 'V'
           break;
-        case 'гуманитарная':
+        case 'Гуманитарная':
           humanitarian = 'V'
           break;
-        case 'иная':
+        case 'Иная':
           other = 'V'
           break;
       }
@@ -179,34 +179,40 @@ export function MigrationPrinter(migration: MigrationModel) {
         d: citizenship[0], d1: citizenship[1], d2: citizenship[2], d3: citizenship[3], d4: citizenship[4], d5: citizenship[5], d6: citizenship[6], d7: citizenship[7], d8: citizenship[8], d9: citizenship[9], d10: citizenship[10], d11: citizenship[11], d12: citizenship[12], d13: citizenship[13], d14: citizenship[14], d15: citizenship[15], d16: citizenship[16], d17: citizenship[17], d18: citizenship[18], d19: citizenship[19], d20: citizenship[20], d21: citizenship[21], d22: citizenship[22], d23: citizenship[23], d24: citizenship[24],
         // Birthday = E => YYYY-MM-DD
         e: migration.birthday[8], e1: migration.birthday[9], e2: migration.birthday[5], e3: migration.birthday[6], e4: migration.birthday[0], e5: migration.birthday[1], e6: migration.birthday[2], e7: migration.birthday[3],
-        // Gender = V
-        v: male, v1: female,
-        // City = F
-        f: city[0], f1: city[1], f2: city[2], f3: city[3], f4: city[4], f5: city[5], f6: city[6], f7: city[7], f8: city[8], f9: city[9], f10: city[10], f11: city[11], f12: city[12], f13: city[13], f14: city[14], f15: city[15], f16: city[16], f17: city[17], f18: city[18], f19: city[19], f20: city[20], f21: city[21], f22: city[22], f23: city[23], f24: city[24], f25: city[25], f26: city[26], f27: city[27], f28: city[28], f29: city[29], f30: city[30], f31: city[31], f32: city[32], f33: city[33], f34: city[34], f35: city[35], f36: city[36], f37: city[37], f38: city[38], f39: city[39], f40: city[40], f41: city[41], f42: city[42], f43: city[43], f44: city[44], f45: city[45], f46: city[46], f47: city[47],
-        // Doc Type = J
-        j: docType[0], j1: docType[1], j2: docType[2], j3: docType[3], j4: docType[4], j5: docType[5], j6: docType[6], j7: docType[7], j8: docType[8], j9: docType[9],
-        // Doc Series/Number
-        h: docSeriesNum[0], h1: docSeriesNum[1], h2: docSeriesNum[2], h3: docSeriesNum[3], h4: docSeriesNum[4], h5: docSeriesNum[5], h6: docSeriesNum[6], h7: docSeriesNum[7], h8: docSeriesNum[8], h9: docSeriesNum[9], h10: docSeriesNum[10],
-        // Doc Given Date = I => YYYY-MM-DD
-        i: migration.docDateOfIssue[8], i1: migration.docDateOfIssue[9], i2: migration.docDateOfIssue[5], i3: migration.docDateOfIssue[6], i4: migration.docDateOfIssue[0], i5: migration.docDateOfIssue[1], i6: migration.docDateOfIssue[2], i7: migration.docDateOfIssue[3],
-        // Doc Expiry Date = W => YYY-MM-DD
-        w: migration.docDateOfExpiry[8], w1: migration.docDateOfExpiry[9], w2: migration.docDateOfExpiry[5], w3: migration.docDateOfExpiry[6], w4: migration.docDateOfExpiry[0], w5: migration.docDateOfExpiry[1], w6: migration.docDateOfExpiry[2], w7: migration.docDateOfExpiry[3],
-        // Right To Stay = K
-        k: vnj, k1:rvp,
-        // Ru Doc Series = L
-        l: ruDocSeries[0], l1: ruDocSeries[1], l2: ruDocSeries[2], l3: ruDocSeries[3],
-        // Ru Doc Number = M
-        m: migration.ruDocNum[0], m1: migration.ruDocNum[1], m2: migration.ruDocNum[2], m3: migration.ruDocNum[3], m4: migration.ruDocNum[4], m5: migration.ruDocNum[5], m6: migration.ruDocNum[6], m7: migration.ruDocNum[7], m8: migration.ruDocNum[8], m9: migration.ruDocNum[9], m10: migration.ruDocNum[10], m11: migration.ruDocNum[11], m12: migration.ruDocNum[12], m13: migration.ruDocNum[13], m14: migration.ruDocNum[14],
-        // Ru Doc Given Date = N => YYYY-MM-DD
-        n: migration.ruDocDateOfIssue[8], n1: migration.ruDocDateOfIssue[9], n2: migration.ruDocDateOfIssue[5], n3: migration.ruDocDateOfIssue[6], n4: migration.ruDocDateOfIssue[0], n5: migration.ruDocDateOfIssue[1], n6: migration.ruDocDateOfIssue[2], n7: migration.ruDocDateOfIssue[3],
-        // Ru Doc Expiry Date = O YYY-MM-DD
-        o: migration.ruDocDateOfExpiry[8], o1: migration.ruDocDateOfExpiry[9], o2: migration.ruDocDateOfExpiry[5], o3: migration.ruDocDateOfExpiry[6], o4: migration.ruDocDateOfExpiry[0], o5: migration.ruDocDateOfExpiry[1], o6: migration.ruDocDateOfExpiry[2], o7: migration.ruDocDateOfExpiry[3],
-        // Purpose of coming
-        p: official, p1: tourism, p2: business, p3: studies, p4: job, p5: own, p6: transit, p7: humanitarian, p8: other,
-        // Migration card series
-        q: migCardSeries[0], q1: migCardSeries[1], q2: migCardSeries[2], q3: migCardSeries[3],
-        // Migration card number
-        r: migCardNum[0], r1: migCardNum[1], r2: migCardNum[2], r3: migCardNum[3], r4: migCardNum[4], r5: migCardNum[5], r6: migCardNum[6], r7: migCardNum[7], r8: migCardNum[8], r9: migCardNum[9], r10: migCardNum[10],
+        // Gender = F
+        f: male, f1: female,
+        // City = G
+        g: city[0], g1: city[1], g2: city[2], g3: city[3], g4: city[4], g5: city[5], g6: city[6], g7: city[7], g8: city[8], g9: city[9], g10: city[10], g11: city[11], g12: city[12], g13: city[13], g14: city[14], g15: city[15], g16: city[16], g17: city[17], g18: city[18], g19: city[19], g20: city[20], g21: city[21], g22: city[22], g23: city[23], g24: city[24], g25: city[25], g26: city[26], g27: city[27], g28: city[28], g29: city[29], g30: city[30], g31: city[31], g32: city[32], g33: city[33], g34: city[34], g35: city[35], g36: city[36], g37: city[37], g38: city[38], g39: city[39], g40: city[40], g41: city[41], g42: city[42], g43: city[43], g44: city[44], g45: city[45], g46: city[46], g47: city[47],
+        // Doc Type = H
+        h: docType[0], h1: docType[1], h2: docType[2], h3: docType[3], h4: docType[4], h5: docType[5], h6: docType[6], h7: docType[7], h8: docType[8], h9: docType[9],
+        // Doc Series/Number = I
+        i: docSeriesNum[0], i1: docSeriesNum[1], i2: docSeriesNum[2], i3: docSeriesNum[3], i4: docSeriesNum[4], i5: docSeriesNum[5], i6: docSeriesNum[6], i7: docSeriesNum[7], i8: docSeriesNum[8], i9: docSeriesNum[9], i10: docSeriesNum[10],
+        // Doc Given Date = J => YYYY-MM-DD
+        j: migration.docDateOfIssue[8], j1: migration.docDateOfIssue[9], j2: migration.docDateOfIssue[5], j3: migration.docDateOfIssue[6], j4: migration.docDateOfIssue[0], j5: migration.docDateOfIssue[1], j6: migration.docDateOfIssue[2], j7: migration.docDateOfIssue[3],
+        // Doc Expiry Date = K => YYY-MM-DD
+        k: migration.docDateOfExpiry[8], k1: migration.docDateOfExpiry[9], k2: migration.docDateOfExpiry[5], k3: migration.docDateOfExpiry[6], k4: migration.docDateOfExpiry[0], k5: migration.docDateOfExpiry[1], k6: migration.docDateOfExpiry[2], k7: migration.docDateOfExpiry[3],
+        // Right To Stay = L
+        l: vnj, l1:rvp,
+        // Ru Doc Series = M
+        m: ruDocSeries[0], m1: ruDocSeries[1], m2: ruDocSeries[2], m3: ruDocSeries[3],
+        // Ru Doc Number = N
+        n: migration.ruDocNum[0], n1: migration.ruDocNum[1], n2: migration.ruDocNum[2], n3: migration.ruDocNum[3], n4: migration.ruDocNum[4], n5: migration.ruDocNum[5], n6: migration.ruDocNum[6], n7: migration.ruDocNum[7], n8: migration.ruDocNum[8], n9: migration.ruDocNum[9], n10: migration.ruDocNum[10], n11: migration.ruDocNum[11], n12: migration.ruDocNum[12], n13: migration.ruDocNum[13], n14: migration.ruDocNum[14],
+        // Ru Doc Given Date = O => YYYY-MM-DD
+        o: migration.ruDocDateOfIssue[8], o1: migration.ruDocDateOfIssue[9], o2: migration.ruDocDateOfIssue[5], o3: migration.ruDocDateOfIssue[6], o4: migration.ruDocDateOfIssue[0], o5: migration.ruDocDateOfIssue[1], o6: migration.ruDocDateOfIssue[2], o7: migration.ruDocDateOfIssue[3],
+        // Ru Doc Expiry Date = P YYY-MM-DD
+        p: migration.ruDocDateOfExpiry[8], p1: migration.ruDocDateOfExpiry[9], p2: migration.ruDocDateOfExpiry[5], p3: migration.ruDocDateOfExpiry[6], p4: migration.ruDocDateOfExpiry[0], p5: migration.ruDocDateOfExpiry[1], p6: migration.ruDocDateOfExpiry[2], p7: migration.ruDocDateOfExpiry[3],
+        // Purpose of coming = Q
+        q: official, q1: tourism, q2: business, q3: studies, q4: job, q5: own, q6: transit, q7: humanitarian, q8: other,
+        // Profession = R
+        r: profession[0], r1: profession[1], r2: profession[2], r3: profession[3], r4: profession[4], r5: profession[5], r6: profession[6], r7: profession[7], r8: profession[8], r9: profession[9], r10: profession[10], r11: profession[11], r12: profession[12], r13: profession[13], r14: profession[14], r15: profession[15], r16: profession[16], r17: profession[17], r18: profession[18], r19: profession[19], r20: profession[20], r21: profession[21], r22: profession[22], r23: profession[23], r24: profession[24], r25: profession[25],
+        // dateOfEntryToRu = S
+        s: migration.dateOfEntryToRu[8], s1: migration.dateOfEntryToRu[9], s2: migration.dateOfEntryToRu[5], s3: migration.dateOfEntryToRu[6], s4: migration.dateOfEntryToRu[0], s5: migration.dateOfEntryToRu[1], s6: migration.dateOfEntryToRu[2], s7: migration.dateOfEntryToRu[3],
+        // deadlineLiveInRu = T
+        t: migration.deadlineLiveInRu[8], t1: migration.deadlineLiveInRu[9], t2: migration.deadlineLiveInRu[5], t3: migration.deadlineLiveInRu[6], t4: migration.deadlineLiveInRu[0], t5: migration.deadlineLiveInRu[1], t6: migration.deadlineLiveInRu[2], t7: migration.deadlineLiveInRu[3],
+        // Migration card series = U
+        u: migCardSeries[0], u1: migCardSeries[1], u2: migCardSeries[2], u3: migCardSeries[3],
+        // Migration card number = V
+        v: migCardNum[0], v1: migCardNum[1], v2: migCardNum[2], v3: migCardNum[3], v4: migCardNum[4], v5: migCardNum[5], v6: migCardNum[6], v7: migCardNum[7], v8: migCardNum[8], v9: migCardNum[9], v10: migCardNum[10],
       });
 
       const blob = doc.getZip().generate({type: "blob", mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",});
